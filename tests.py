@@ -1,51 +1,35 @@
-user_input = input("Paste page usernames, separate with comma only (,)")
-user_input = user_input.replace(" ", "") # Delete space
-page_user_list = user_input.split(",")
+from datetime import datetime
+from itertools import dropwhile, takewhile
+from datetime import date, timedelta
+from time import sleep
+import instaloader
+# Full Details: https://github.com/chris-greening/instascrape And https://github.com/chris-greening/instascrape/wiki/Scraped-data-points
+# from instascrape import *
+from pandas.tests.tseries.frequencies.test_inference import day
 
-# List of strings
-# page_user_list = ["nike", "dainwalker", "_trash_baby"]
+# L = instaloader.Instaloader()
+#
+# posts = instaloader.Profile.from_username(L.context, "instagram").get_posts()
+#
+# SINCE = datetime(2021, 1, 20)
+# UNTIL = datetime(2021, 1, 29)
+#
+# for post in takewhile(lambda p: p.date > UNTIL, dropwhile(lambda p: p.date > SINCE, posts)):
+#     print(post.date)
+#     L.download_post(post, "instagram")
 
-# List of ints
-post_counters = []
-for item in page_user_list:
-	post_counters.append(
-		{
-			"static": 0,
-			"updated": 0
-		},
-	)
-# print(post_counters)
 
-# Create a zip object from two lists
-full_page = zip(page_user_list, post_counters)
-dict_page_counters = dict(full_page)
 
-value_1 = 1
-value_2 = 2
+print("Start")
+L = instaloader.Instaloader()
 
-# my_dict = {
-# 	"my_key": {
-# 		"key_1": value_1,
-# 		"key_2": value_2
-# 	}
-# }
-# print (my_dict["my_key"]["key_1"])  # This will print value_1
-# print (my_dict["my_key"]["key_2"])  # This will print value_2
+the_username = "spider.models"
+profile_page = instaloader.Profile.from_username(L.context, the_username).get_posts()
 
-profile_user_list = {
-    # Key = profile name #Value = post count
-	"spider.models": {
-		"static": 0,
-		"updated": 0
-	},
-	"nike": {
-		"static": 0,
-		"updated": 0
-	},
-	"stabilo": {
-		"static": 0,
-		"updated": 0
-	}
-}
-# print (profile_user_list["nike"]["updated"])
-# print (profile_user_list["stabilo"]["updated"])
+# למרות שיש צורך רק באיבור הראשון ברשימה
+# לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])
+for post in profile_page:
+    # Not work for Private Account! (כי אין צורך להתחבר)
+    # Takes time for multiple images/Videos
+    L.download_post(post, target=the_username)  # שם התיקייה אליה ייוצאו הקבצים
+    break

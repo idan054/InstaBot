@@ -9,6 +9,9 @@ import instaloader
 
 print("Start")
 L = instaloader.Instaloader()
+# Login or load session
+# L.login("spider_modelsx", "Idan05423")        # (login)
+L.load_session_from_file("spider_modelsx")
 
 global profile_user_list
 global post_counter
@@ -94,7 +97,7 @@ def auto_new_post_downloader():
                 global post_counter
                 global profile_page
                 global start_download
-                sleep(3)
+                sleep(1)
                 # עדכון של המידע על הפוסטים לאחר המתנה
                 profile_page = instaloader.Profile.from_username(L.context, current_username).get_posts()
                 post_counter["updated"] = profile_page.count
