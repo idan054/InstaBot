@@ -37,22 +37,24 @@ profile_user_list = {
 # print (profile_user_list["stabilo"]["updated"])
 
 # user_index = 0
-while not start_download: # while start_download = False
-    while_index = 0
+while_index = 0
+# while Loop until post downloaded
+while not start_download:  # while start_download = False
+    print(f"current loop: {while_index}")
     for current_username, post_counter in profile_user_list.items():
-       print('_________________________')
-       print(f'Start for loop "{current_username}"')
-       print(' post_counter["static"] is ' + str(post_counter["static"]))
-       print('_________________________ \n')
-       if while_index == 0: # תגדיר את static רב בסבב while ה-1
-           # מידע על הפוסטים עבור המשתמש הנוכחי בלולאת פור
-           profile_page = instaloader.Profile.from_username(L.context, current_username).get_posts()
-           # הגדר כמות פוסטים ראשונית
-           post_counter["static"] = profile_page.count
-           while_index += 1
-           print("while_index is " + str(while_index))
+        # מידע על הפוסטים עבור המשתמש הנוכחי בלולאת פור
+        print(f'Start for loop "{current_username}"')
+        if while_index == 0:
+            # הגדר כמות פוסטים ראשונית בסבב while הראשון בלבד
+            profile_page = instaloader.Profile.from_username(L.context, current_username).get_posts()
+            post_counter["static"] = profile_page.count
+            print(' --- post_counter["static"] is ' + str(post_counter["static"]) + " --- ")
+            pass
+        else:
+            print(' --- post_counter["static"] is ' + str(post_counter["static"]) + " --- ")
 
-       def new_post_checker():
+        # print("start new_post_checker")
+        def new_post_checker():
             global post_counter
             global profile_page
             global start_download
@@ -61,7 +63,7 @@ while not start_download: # while start_download = False
             profile_page = instaloader.Profile.from_username(L.context, current_username).get_posts()
             post_counter["updated"] = profile_page.count
 
-            print(' post_counter["static"] is ' + str(post_counter["static"]))
+            # print(' post_counter["static"] is ' + str(post_counter["static"]))
             print(' post_counter["updated"] is ' + str(post_counter["updated"]))
             print("----------------------")
             # בודק אם נוסף פוסט חדש
@@ -73,19 +75,28 @@ while not start_download: # while start_download = False
                 print(' post_counter["static"] is ' + str(post_counter["static"]))
                 print(' post_counter["updated"] is ' + str(post_counter["updated"]) + "\n ----------------------")
                 start_download = True
-       new_post_checker()
 
-       print(f'Done for loop "{current_username}"')
-       break
+                # if בתוך הלולאה לשימוש בערכים
+                if start_download:
+                    def download_lasted_post():
+                        global start_download
+                        if start_download:  # = True
+                            # למרות שיש צורך רק באיבור הראשון ברשימה
+                            # לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])
+                            for post in profile_page:
+                                # Not work for Private Account! (כי אין צורך להתחבר)
+                                # Takes time for multiple images/Videos
+                                L.download_post(post, target=current_username)  # שם התיקייה אליה ייוצאו הקבצים
+                                break
 
-def download_lasted_post():
-    global start_download
-    if start_download: # = True
-        # למרות שיש צורך רק באיבור הראשון ברשימה
-        # לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])
-        for post in profile_page:
-            # Not work for Private Account! (כי אין צורך להתחבר)
-            # Takes time for multiple images/Videos
-            L.download_post(post, target=current_username)  # שם התיקייה אליה ייוצאו הקבצים
+                    download_lasted_post()
+                    print("lasted post downloaded")
+
+        # if for stop for loop
+        if start_download:
             break
-download_lasted_post()
+
+        new_post_checker()
+        # print(f'Done for loop "{current_username}"' )
+
+    while_index += 1
