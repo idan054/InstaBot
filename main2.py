@@ -42,24 +42,26 @@ Make a special dictionary who includes profile users and post counters
 # print(profile_user_list)
 
 # region Static Template
-profile_user_list = {
-    # Key = profile name #Value = post count
-    "spider.models": {
-        "static": 0,
-        "updated": 0
-    },
-    "nike": {
-        "static": 0,
-        "updated": 0
-    },
-    "stabilo": {
-        "static": 0,
-        "updated": 0
-    }
-}
-# print (profile_user_list["nike"]["updated"])
-print (profile_user_list["stabilo"]["updated"])
-print(profile_user_list)
+
+# profile_user_list = {
+#     # Key = profile name #Value = post count
+# 	"spider.models": {
+# 		"static": 0,
+# 		"updated": 0
+# 	},
+# 	"nike": {
+# 		"static": 0,
+# 		"updated": 0
+# 	},
+# 	"stabilo": {
+# 		"static": 0,
+# 		"updated": 0
+# 	}
+# }
+# # print (profile_user_list["nike"]["updated"])
+# print (profile_user_list["stabilo"]["updated"])
+# print(profile_user_list)
+
 # endregion Static Template
 
 def auto_new_post_downloader():
