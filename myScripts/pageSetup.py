@@ -1,5 +1,8 @@
+global profile_user_list
 
-def username_maker():
+def setupPagesUsers():
+    global profile_user_list
+    """"Setup the Instagram pages based user Input"""
 
     # region Static Template
 
@@ -33,7 +36,7 @@ def username_maker():
 
     # List of ints
     post_counters = []
-    for item in page_user_list:
+    for _ in page_user_list:
         post_counters.append(
             {
                 "static": 0,
@@ -45,3 +48,5 @@ def username_maker():
     # Create a zip object from two lists
     full_page = zip(page_user_list, post_counters)
     profile_user_list = dict(full_page)
+    print(profile_user_list)
+    # return profile_user_list
