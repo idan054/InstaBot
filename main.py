@@ -18,18 +18,7 @@ if __name__ == '__main__':
     _finalUserName = new_post_downloader(profiles2check=_profile_user_list, postPicker=3)
     # postPicker means Which post to download refer to lasted post (lasted might make more rights problems...)
 
-    # global is_upload
-    is_upload = False
-    def aggressive_post_upload():
-        global is_upload
-        print("Try Upload...")
-        try:
-            post_uploader(credit_user=_finalUserName)
-            is_upload = True
-            shutil.rmtree('ThePost')  # Delete ThePost folder
-        except:
-            shutil.rmtree('config')  # Delete config folder
-            is_upload = False
-    while not is_upload: aggressive_post_upload()
+    # post_uploader(credit_user=_finalUserName, delete_post_folder=False)
+    # Trying 5 times with While loop, who delete config folder + try upload post again
 
     print("Done")
