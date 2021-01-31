@@ -1,7 +1,7 @@
 from time import sleep
 import instaloader
 
-from myScripts.A_Setup_usernames import setup_usernames
+from myScripts.A1_Setup_usernames import setup_usernames
 
 global post_counter
 global profile_page
@@ -14,7 +14,7 @@ L = instaloader.Instaloader()
 # L.login("spider_modelsx", "Idan05423")        # (login)
 L.load_session_from_file("spider_modelsx")
 
-def new_post_downloader(profile_user_list):
+def new_post_downloader(profiles2check, postPicker):
     """"Looking for new post on Instagram pages based username_maker() pre set"""
 
     global post_counter
@@ -27,7 +27,7 @@ def new_post_downloader(profile_user_list):
     # while Loop until post downloaded
     while not start_download:  # while start_download = False
         print(f"current loop: {while_index}")
-        for current_username, post_counter in profile_user_list.items():
+        for current_username, post_counter in profiles2check.items():
             # מידע על הפוסטים עבור המשתמש הנוכחי בלולאת פור
             print(f'Start for loop "{current_username}"')
             if while_index == 0:
@@ -68,12 +68,15 @@ def new_post_downloader(profile_user_list):
                         if start_download:  # = True
                             # למרות שיש צורך רק באיבור הראשון ברשימה
                             # לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])
+                            forLoopIndex = 0
                             for post in profile_page:
+                                forLoopIndex += 1
                                 # Not work for Private Account! (כי אין צורך להתחבר)
                                 # Takes time for multiple images/Videos
-                                L.download_post(post, target=userFolder)  # שם התיקייה אליה ייוצאו הקבצים
-                                break  # כדי שיוריד רק פוסט 1 (את העדכני ביותר)
-                            print("lasted post downloaded")
+                                if forLoopIndex == postPicker: # So 3rd (example) recent post will download and not lasted post
+                                    L.download_post(post, target="ThePost")  # שם התיקייה אליה ייוצאו הקבצים
+                                    break  # כדי שיוריד רק פוסט 1 (את הנבחר ע"י postPicker בהתבסס על החדש ביותר)
+                            print("ThePost downloaded")
                             return userFolder
                     download_lasted_post(current_username)
             new_post_checker()
@@ -84,5 +87,6 @@ def new_post_downloader(profile_user_list):
 
         while_index += 1
 
-    print("start_download is " + str(start_download))
-    return start_download, current_username
+    # print("start_download is " + str(start_download))
+    print("-----------------")
+    return current_username
