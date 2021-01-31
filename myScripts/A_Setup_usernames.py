@@ -1,7 +1,4 @@
-global profile_user_list
-
-def setupPagesUsers():
-    global profile_user_list
+def setup_usernames():
     """"Setup the Instagram pages based user Input"""
 
     # region Static Template
@@ -49,4 +46,4 @@ def setupPagesUsers():
     full_page = zip(page_user_list, post_counters)
     profile_user_list = dict(full_page)
     print(profile_user_list)
-    # return profile_user_list
+    return profile_user_list

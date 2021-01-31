@@ -8,7 +8,6 @@ import instaloader
 # Tab Checker: py -m tabnanny main.py # main.py as example
 
 def download_lasted_post(userFolder):
-
     if start_download:  # = True
         # למרות שיש צורך רק באיבור הראשון ברשימה
         # לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])

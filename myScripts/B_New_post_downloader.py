@@ -1,19 +1,12 @@
-from datetime import datetime
-from itertools import dropwhile, takewhile
-from datetime import date, timedelta
-from myScripts.newPostDownloader import download_lasted_post
 from time import sleep
 import instaloader
-# Full Details: https://github.com/chris-greening/instascrape And https://github.com/chris-greening/instascrape/wiki/Scraped-data-points
-# from instascrape import *
-# Tab Checker: py -m tabnanny main.py # main.py as example
-import sys
-# global L
 
-global profile_user_list
+from myScripts.A_Setup_usernames import setup_usernames
+
 global post_counter
 global profile_page
 global start_download
+global current_username
 
 print("Start")
 L = instaloader.Instaloader()
@@ -21,65 +14,13 @@ L = instaloader.Instaloader()
 # L.login("spider_modelsx", "Idan05423")        # (login)
 L.load_session_from_file("spider_modelsx")
 
-def setupPagesUsers():
-    """"Setup the Instagram pages based user Input"""
-    global profile_user_list
-
-    # region Static Template
-
-    # profile_user_list = {
-    #     # Key = profile name #Value = post count
-    # 	"spider.models": {
-    # 		"static": 0,
-    # 		"updated": 0
-    # 	},
-    # 	"nike": {
-    # 		"static": 0,
-    # 		"updated": 0
-    # 	},
-    # 	"stabilo": {
-    # 		"static": 0,
-    # 		"updated": 0
-    # 	}
-    # }
-    # # print (profile_user_list["nike"]["updated"])
-    # print (profile_user_list["stabilo"]["updated"])
-    # print(profile_user_list)
-
-    # endregion Static Template
-
-    user_input = input("Paste page usernames, separate with comma only (,)")
-    user_input = user_input.replace(" ", "")  # Delete space
-    page_user_list = user_input.split(",")
-
-    # List of strings
-    # page_user_list = ["nike", "dainwalker", "_trash_baby"]
-
-    # List of ints
-    post_counters = []
-    for _ in page_user_list:
-        post_counters.append(
-            {
-                "static": 0,
-                "updated": 0
-            },
-        )
-    # print(post_counters)
-
-    # Create a zip object from two lists
-    full_page = zip(page_user_list, post_counters)
-    profile_user_list = dict(full_page)
-    print(profile_user_list)
-    # return profile_user_list
-setupPagesUsers()
-
-def new_post_checker():
+def new_post_downloader(profile_user_list):
     """"Looking for new post on Instagram pages based username_maker() pre set"""
 
-    global profile_user_list
     global post_counter
     global profile_page
     global start_download
+    global current_username
 
     start_download = False
     while_index = 0
@@ -122,23 +63,26 @@ def new_post_checker():
                     start_download = True
 
                     # if בתוך הלולאה לשימוש בערכים
-                    if start_download: # is True
-                        download_lasted_post(
-                            current_username,
-                            start_download,
-                            profile_page,
-                            L )
-
-            # if for stop for loop
-            if start_download:
-                break
-
+                    def download_lasted_post(userFolder):
+                        # global finalUserName
+                        if start_download:  # = True
+                            # למרות שיש צורך רק באיבור הראשון ברשימה
+                            # לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])
+                            for post in profile_page:
+                                # Not work for Private Account! (כי אין צורך להתחבר)
+                                # Takes time for multiple images/Videos
+                                L.download_post(post, target=userFolder)  # שם התיקייה אליה ייוצאו הקבצים
+                                break  # כדי שיוריד רק פוסט 1 (את העדכני ביותר)
+                            print("lasted post downloaded")
+                            return userFolder
+                    download_lasted_post(current_username)
             new_post_checker()
-            # print(f'Done for loop "{current_username}"' )
+            # if to stop FOR loop
+            if start_download:  break
+        # if to stop WHILE loop
+        if start_download:  break
 
         while_index += 1
-new_post_checker()
 
-# async def async_test():
-#     await auto_new_post_downloader()
-#     print("Finish?")
+    print("start_download is " + str(start_download))
+    return start_download, current_username
