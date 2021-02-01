@@ -1,5 +1,6 @@
 from time import sleep
 import instaloader
+from Gadgets.console_colors import bcolors
 
 from myScripts.A1_Setup_usernames import setup_usernames
 
@@ -56,7 +57,7 @@ def new_post_downloader(profiles2check, postPicker):
                 if post_counter["static"] == post_counter["updated"]:
                     print("No new post yet...")
                 else:
-                    print("\n New post Found!")
+                    print(f"\n {bcolors.Yellow}{bcolors.BOLD}New post Found!{bcolors.Normal}")
                     print('---------------------- \n post_counter["static"] != post_counter["updated"]')
                     print(' post_counter["static"] is ' + str(post_counter["static"]))
                     print(' post_counter["updated"] is ' + str(post_counter["updated"]) + "\n ----------------------")

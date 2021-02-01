@@ -8,8 +8,8 @@ import shutil
 from myScripts.A2_New_post_downloader import new_post_downloader
 from myScripts.A1_Setup_usernames import setup_usernames
 # Part A - Setup, Searching, Download
-from myScripts.A3_Files_Name_finder import name_finder
-from myScripts.A5_Setup_post import setup_post
+from myScripts.A3_Files_name_finder import name_finder
+from myScripts.A5_Setup_post_details import setup_post
 from myScripts.B1_Post_Uploader import actual_upload
 
 if __name__ == '__main__':
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     _files_name = name_finder() #AKA "2021-01-29_10-15-52_UTC"
 
     # 4 Make a file which post details & rename post photo to the same name (post_1.py, 2021-01-30_22-05-44_UTC.jpg)
-    setup_post(page_profile=_finalUserName, files_name=_files_name, order_ReadyPost=1)
+    setup_post(page_profile=_finalUserName, files_name=_files_name, order_ReadyPost=1) #order_ReadyPost Should be Auto count
 
     #acttual_upload is inside def of post_upload who able to schedule and use the details files (post_1.py, 2021-01-30_22-05-44_UTC.jpg)
     # actual_upload(credit_user=_finalUserName, delete_post_folder=False)
