@@ -6,11 +6,14 @@ data = ["This cyber rob is really cute, I necessarily had to print it. Have you 
 model_id = 'ex_YCya9nrn'
 result = ml.extractors.extract(model_id, data)
 
+print(type(result.body[0]))
 # print(result.body[0]["extractions"])
 # print(result.body[0]["extractions"][6]["parsed_value"])
-relevanceList = []
-for item in result.body[0]["extractions"]:
-    print(item["parsed_value"] + "|" + item["relevance"])
+
+# relevanceList = []
+# for item in result.body[0]["extractions"]:
+#     print(item["parsed_value"] + "|" + item["relevance"])
+
 # relevanceList.sort(reverse=True)
 # print(*relevanceList, sep = "\n")
 

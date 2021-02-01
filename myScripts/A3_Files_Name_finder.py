@@ -1,17 +1,12 @@
+from datetime import date, datetime
 import shutil
-from instabot import Bot
+import json
+from xopen import xopen
 import glob
 import os
 
-# map(os.path.basename... for file name only (not path)
-picList = list(map(os.path.basename, glob.glob("ThePost/*jpg")))
-# Full_path = glob.glob("..\ThePost\*jpg") #list of path files
-
-files_name = picList[0]  # TODO Make it fit to also multi photo post and video
-
 # Remove any ending AKA jpg, png, mp4
 def ending_remover(theString):
-    global files_name
     erase_letters = False
     for letter in theString:
         if erase_letters:
@@ -26,5 +21,13 @@ def ending_remover(theString):
             theString = theString.replace(letter, "")
     return theString
     # To use: some_string = ending_remover(some_string)
-files_name = ending_remover(files_name)
-print(files_name)
+
+def name_finder():
+    # file_name = map(os.path.basename...
+    picList = list(map(os.path.basename, glob.glob("ThePost/*txt")))  # List
+    # full_path = glob.glob("..\ThePost\*jpg") #list of path files
+    full_pic_name = picList[0]  # String #TODO Make it fit to also multi photo post and video
+
+    _files_name = ending_remover(full_pic_name)
+    print(f"files_name : {_files_name}")
+    return _files_name

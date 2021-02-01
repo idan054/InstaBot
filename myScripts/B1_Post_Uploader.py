@@ -3,7 +3,7 @@ from instabot import Bot
 import glob
 import os
 
-def post_uploader(credit_user, delete_post_folder):
+def actual_upload(credit_user, delete_post_folder):
     picList = list(map(os.path.basename, glob.glob("ThePost/*jpg")))  # map(os.path.basename... for file name only (not path)
     # Full path
     # filesPath = glob.glob("..\ThePost\*jpg") #list of path files

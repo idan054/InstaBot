@@ -1,4 +1,4 @@
-file = open("username.txt", "w")
+file = open("ReadyPosts/username.txt", "x")
 
 file.write("While download_lasted_post function run, you can't use those files ")
 file.write("(To upload the post) \n")
