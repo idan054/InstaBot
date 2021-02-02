@@ -37,4 +37,4 @@ if __name__ == '__main__':
     # actual_upload(credit_user=_finalUserName, delete_post_folder=False)
     # Trying 5 times with While loop, who delete config folder + try upload post again
 
-    print("Done")
+    print("Done.")
