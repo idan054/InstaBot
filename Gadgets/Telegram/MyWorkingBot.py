@@ -1,7 +1,20 @@
 from datetime import datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-from Gadgets.console_colors import bcolors
+# from Gadgets.console_colors import bcolors
+class bcolors:
+    White = '\033[97m'
+    Purple = '\033[95m'
+    Blue = '\033[94m'
+    Yellow = '\033[93m'
+    Green = '\033[92m'
+    Red = '\033[91m'
+    Grey = '\033[90m'
+
+    Normal = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+# print(f'{bcolors.Green}User "{bcolors.BOLD}Arik{bcolors.Normal}{bcolors.Green}" Added!{bcolors.Normal}')
 
 updater = Updater(token='1618156264:AAG4JRzGQD3O-gEjD3yFzS5OssJQiJML5j4', use_context=True) #Replace TOKEN with your token string
 telegarm_bot = updater.dispatcher
