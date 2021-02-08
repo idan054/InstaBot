@@ -24,8 +24,9 @@ def ending_remover(theString):
 
 def name_finder():
     # file_name = map(os.path.basename...
-    picList = list(map(os.path.basename, glob.glob("ThePost/*txt")))  # List
+    picList = list(map(os.path.basename, glob.glob("ThePost/*jpg")))  # List
     # full_path = glob.glob("..\ThePost\*jpg") #list of path files
+    # print(f"picList = {picList}")
     full_pic_name = picList[0]  # String #TODO Make it fit to also multi photo post and video
 
     _files_name = ending_remover(full_pic_name)

@@ -15,7 +15,7 @@ L = instaloader.Instaloader()
 # L.login("spider_modelsx", "Idan05423")        # (login)
 L.load_session_from_file("spider_modelsx")
 
-def new_post_downloader(profiles2check, postPicker):
+def acttual_downloader(profiles2check, postPicker, slow_mode):
     """"Looking for new post on Instagram pages based username_maker() pre set"""
 
     global post_counter
@@ -27,6 +27,9 @@ def new_post_downloader(profiles2check, postPicker):
     while_index = 0
     # while Loop until post downloaded
     while not start_download:  # while start_download = False
+        if slow_mode:
+            sleep(5*60)
+
         print(f"current loop: {while_index}")
         for current_username, post_counter in profiles2check.items():
             # מידע על הפוסטים עבור המשתמש הנוכחי בלולאת פור
