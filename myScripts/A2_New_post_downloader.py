@@ -28,9 +28,11 @@ def actual_downloader(profiles2check, postPicker, slow_mode):
     # while Loop until post downloaded
     while not start_download:  # while start_download = False
         print(f"current loop: {while_index}")
-        if slow_mode: print(f"{bcolors.Yellow}Slow mode is ON!{bcolors.Normal}")
-        if slow_mode and while_index != 0:
+        if slow_mode:
+            print(f"{bcolors.Yellow}Slow mode is ON!{bcolors.Normal}")
+        if slow_mode and while_index != 0: #S Not in first time
             # sleep(5*60)
+            print("Start 5 minutes sleep (∪｡∪)zzZ｡｡｡")
             for sec in range(0, 60*5):
                 sleep(1)
                 update_progress(sec, 60*5)
