@@ -6,7 +6,7 @@ from telegram import Update, InlineKeyboardButton
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, ConversationHandler
 from datetime import datetime
 
-from Gadgets.console_colors import bcolors
+from Gadgets.console_design import bcolors
 
 updater = Updater(token='1618156264:AAG4JRzGQD3O-gEjD3yFzS5OssJQiJML5j4', use_context=True) #Replace TOKEN with your token string
 telegarm_bot = updater.dispatcher

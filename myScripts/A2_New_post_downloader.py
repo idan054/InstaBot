@@ -1,6 +1,6 @@
 from time import sleep
 import instaloader
-from Gadgets.console_colors import bcolors
+from Gadgets.console_design import bcolors, update_progress
 
 from myScripts.A1_Setup_usernames import setup_usernames
 
@@ -9,13 +9,13 @@ global profile_page
 global start_download
 global current_username
 
-print("Start")
+# print("Start")
 L = instaloader.Instaloader()
 # Login or load session
 # L.login("spider_modelsx", "Idan05423")        # (login)
 L.load_session_from_file("spider_modelsx")
 
-def acttual_downloader(profiles2check, postPicker, slow_mode):
+def actual_downloader(profiles2check, postPicker, slow_mode):
     """"Looking for new post on Instagram pages based username_maker() pre set"""
 
     global post_counter
@@ -28,7 +28,10 @@ def acttual_downloader(profiles2check, postPicker, slow_mode):
     # while Loop until post downloaded
     while not start_download:  # while start_download = False
         if slow_mode:
-            sleep(5*60)
+            # sleep(5*60)
+            for sec in range(0, 60*5):
+                sleep(1)
+                update_progress(sec, 60*5)
 
         print(f"current loop: {while_index}")
         for current_username, post_counter in profiles2check.items():
@@ -67,22 +70,31 @@ def acttual_downloader(profiles2check, postPicker, slow_mode):
                     start_download = True
 
                     # if בתוך הלולאה לשימוש בערכים
-                    def download_lasted_post(userFolder):
-                        # global finalUserName
+                    def download_lasted_post():
+                        # global profile_page
+                        print("profile_page is")
+                        print(profile_page)
+
                         if start_download:  # = True
                             # למרות שיש צורך רק באיבור הראשון ברשימה
                             # לא ניתן לוותר על הלולאה (ולהשתמש בערך כרשימה[0])
-                            forLoopIndex = 0
+                            forIndex = 1
                             for post in profile_page:
-                                forLoopIndex += 1
-                                # Not work for Private Account! (כי אין צורך להתחבר)
-                                # Takes time for multiple images/Videos
-                                if forLoopIndex == postPicker: # So 3rd (example) recent post will download and not lasted post
+                                #S Not work for Private Account! (כי אין צורך להתחבר)
+                                #S Takes time for multiple images/Videos
+                                if forIndex != postPicker:  # כל מה שלא..
+                                    print(f"forIndex != postPicker"
+                                          f"\n {forIndex} != {postPicker}")
+                                    forIndex += 1 # So 3rd (example) recent post will download and not lasted post
+                                elif forIndex == postPicker:
+                                    print(f"{bcolors.Yellow}{bcolors.BOLD}"
+                                          f"download post {postPicker}...{bcolors.Normal}")
+                                    print(post.url)
                                     L.download_post(post, target="ThePost")  # שם התיקייה אליה ייוצאו הקבצים
-                                    break  # כדי שיוריד רק פוסט 1 (את הנבחר ע"י postPicker בהתבסס על החדש ביותר)
-                            print("ThePost downloaded")
-                            return userFolder
-                    download_lasted_post(current_username)
+                                    break
+
+                            print(f"ThePost downloaded")
+                    download_lasted_post()
             new_post_checker()
             # if to stop FOR loop
             if start_download:  break

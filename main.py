@@ -5,7 +5,9 @@ from instabot import Bot # urlgen Error Fix: Delete config or pip uninstall - in
 
 import os
 import shutil
-from myScripts.A2_New_post_downloader import acttual_downloader
+
+from Gadgets.console_design import bcolors
+from myScripts.A2_New_post_downloader import actual_downloader
 from myScripts.A1_Setup_usernames import setup_usernames
 # Part A - Setup, Searching, Download
 from myScripts.A3_Files_name_finder import name_finder
@@ -13,7 +15,7 @@ from myScripts.A5_Setup_post_details import setup_post
 from myScripts.B1_Post_Uploader import actual_upload
 
 if __name__ == '__main__':
-    print("Start")
+    print(f"{bcolors.Yellow}Start{bcolors.Normal}")
     # downloaded_posts = 0
     # while downloaded_posts != 3...
     #     if... downloaded_posts += 1
@@ -22,16 +24,19 @@ if __name__ == '__main__':
     _profile_user_list = setup_usernames()
 
     _postPicker = input("Which post (relate to lasted) will be downloaded? (Default is 3rd") or 3
-    #ToDo  _postPicker not working
+    _postPicker = int(_postPicker)
 
     def post_downloader():
         post_index = 0
         while 1 == 1:
-            print(f'Alredy in list posts = post_index = {post_index}')
+            print(f'{bcolors.Yellow}{bcolors.BOLD}'
+                  f'Already in the posts list AKA post_index = {post_index}'
+                  f'{bcolors.Normal}')
+
             # 2 looking for new posts & Download when found.
-            _finalUserName = acttual_downloader(profiles2check=_profile_user_list,
-                                                postPicker=_postPicker,
-                                                slow_mode=False)            # postPicker means Which post to download refer to lasted post (lasted might make more rights problems...)
+            _finalUserName = actual_downloader(profiles2check=_profile_user_list,
+                                               postPicker=_postPicker,  # refer to lasted post (the 1st lasted might make more rights problems...)
+                                               slow_mode=False)          # Wait 5 minutes between loops
 
             # 3 Get name of ThePost files
             _files_name = name_finder() #AKA "2021-01-29_10-15-52_UTC"
@@ -39,7 +44,8 @@ if __name__ == '__main__':
             # 4 fetch files to dict (dictionary list) and delete ThePost folder
             setup_post(page_profile=_finalUserName,
                        files_name=_files_name,
-                       post_counter=post_index)  #order_ReadyPostShouldbeAutocount            post_index += 1
+                       post_counter=post_index+1)  ## Start from 1
+            post_index += 1 ## Start from 0
     post_downloader()
 
     #acttual_upload is inside def of post_upload who able to schedule and use the details files (post_1.py, 2021-01-30_22-05-44_UTC.jpg)

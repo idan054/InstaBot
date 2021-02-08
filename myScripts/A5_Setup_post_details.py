@@ -5,7 +5,7 @@ from xopen import xopen
 import glob
 import os
 
-from Gadgets.console_colors import bcolors
+from Gadgets.console_design import bcolors
 
 readyPost_dict = {}
 def setup_post(page_profile, files_name, post_counter):
@@ -59,7 +59,8 @@ def setup_post(page_profile, files_name, post_counter):
             }
           }
         )
-        print(f"{bcolors.Blue}{bcolors.BOLD}readyPost_dict = {readyPost_dict}{bcolors.Normal}")
+        print(f"\n\n{bcolors.Blue}{bcolors.BOLD}"
+              f"readyPost_dict = {readyPost_dict}{bcolors.Normal}\n\n")
     dict_editor()
 
     shutil.rmtree('ThePost') # Based on main.py

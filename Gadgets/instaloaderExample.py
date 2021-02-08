@@ -7,8 +7,20 @@ print("Start")
 L = instaloader.Instaloader()
 
 # for post in instaloader.Hashtag.from_name(L.context, 'cat').get_posts():
-for post in instaloader.Profile.from_username(L.context, "stabilo").get_posts():
-    L.download_post(post, target='stabilo')
+user = instaloader.Profile.from_username(L.context, "spider_modelsx").get_posts()
+# for post in user:
+#     L.download_post(post, target='stabilo')
+
+forIndex = 1
+for post in user:
+    print(forIndex)
+    if forIndex != 1: #S כל מה שלא..
+        forIndex += 1
+        continue # skip
+    else:
+        print(post.url)
+        break
+print("Done")
 
 # posts = instaloader.Profile.from_username(L.context, "stabilo").get_posts()
 # print(posts.count)

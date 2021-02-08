@@ -24,7 +24,8 @@ def setup_usernames():
 
     # endregion Static Template
 
-    user_input = input("Paste page usernames, separate with comma only (,)") or "spider_modelsx, nike, stabilo"
+    user_input = input("Paste page usernames, separate with comma only (,)")\
+                 or "spider_modelsx, nike, stabilo"
     user_input = user_input.replace(" ", "")  # Delete space
     page_user_list = user_input.split(",")
 

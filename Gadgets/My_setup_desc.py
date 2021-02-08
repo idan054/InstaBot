@@ -1,4 +1,4 @@
-from Gadgets.console_colors import bcolors
+from Gadgets.console_design import bcolors
 
 # A4 - <- הכנת תיאור: האשטגים קיימים יחולצו -> תיאור מקור נקי
 # -> מילות מפתח מבוססת למידה מכונה -> שורת תיוג קבועה בתיאור - A4
