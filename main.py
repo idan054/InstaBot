@@ -1,5 +1,5 @@
 # from instascrape import * # Full Details: https://github.com/chris-greening/instascrape And https://github.com/chris-greening/instascrape/wiki/Scraped-data-points
-from instabot import Bot # urlgen Error Fix: Delete config or pip uninstall - install...
+# from instabot import Bot # urlgen Error Fix: Delete config or pip uninstall - install...
 # Fix Tab/Space Errors: py -m tabnanny main.py # main.py as example
 # fix Directory/file error: "../" refer to the def *runner* location run()
 
