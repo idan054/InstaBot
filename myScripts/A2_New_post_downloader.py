@@ -27,13 +27,14 @@ def actual_downloader(profiles2check, postPicker, slow_mode):
     while_index = 0
     # while Loop until post downloaded
     while not start_download:  # while start_download = False
-        if slow_mode:
+        print(f"current loop: {while_index}")
+        if slow_mode: print(f"{bcolors.Yellow}Slow mode is ON!{bcolors.Normal}")
+        if slow_mode and while_index != 0:
             # sleep(5*60)
             for sec in range(0, 60*5):
                 sleep(1)
                 update_progress(sec, 60*5)
 
-        print(f"current loop: {while_index}")
         for current_username, post_counter in profiles2check.items():
             # מידע על הפוסטים עבור המשתמש הנוכחי בלולאת פור
             print(f'Start for loop "{current_username}"')
@@ -72,8 +73,8 @@ def actual_downloader(profiles2check, postPicker, slow_mode):
                     # if בתוך הלולאה לשימוש בערכים
                     def download_lasted_post():
                         # global profile_page
-                        print("profile_page is")
-                        print(profile_page)
+                        # print("profile_page is")
+                        # print(profile_page)
 
                         if start_download:  # = True
                             # למרות שיש צורך רק באיבור הראשון ברשימה
@@ -83,13 +84,13 @@ def actual_downloader(profiles2check, postPicker, slow_mode):
                                 #S Not work for Private Account! (כי אין צורך להתחבר)
                                 #S Takes time for multiple images/Videos
                                 if forIndex != postPicker:  # כל מה שלא..
-                                    print(f"forIndex != postPicker"
-                                          f"\n {forIndex} != {postPicker}")
+                                    # print(f"forIndex != postPicker"
+                                    #       f"\n {forIndex} != {postPicker}")
                                     forIndex += 1 # So 3rd (example) recent post will download and not lasted post
                                 elif forIndex == postPicker:
                                     print(f"{bcolors.Yellow}{bcolors.BOLD}"
-                                          f"download post {postPicker}...{bcolors.Normal}")
-                                    print(post.url)
+                                          f"download the {postPicker}th lasted post...{bcolors.Normal}")
+                                    # print(post.url)
                                     L.download_post(post, target="ThePost")  # שם התיקייה אליה ייוצאו הקבצים
                                     break
 

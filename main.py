@@ -23,20 +23,21 @@ if __name__ == '__main__':
     # 1 User Input usernames of Instagram Pages
     _profile_user_list = setup_usernames()
 
-    _postPicker = input("Which post (relate to lasted) will be downloaded? (Default is 3rd") or 3
+    _postPicker = input("Which post (relate to lasted) will be downloaded?\nDefault is 3rd. ") or 3
     _postPicker = int(_postPicker)
 
     def post_downloader():
         post_index = 0
         while 1 == 1:
-            print(f'{bcolors.Yellow}{bcolors.BOLD}'
-                  f'Already in the posts list AKA post_index = {post_index}'
-                  f'{bcolors.Normal}')
+            if post_index != 0:
+                print(f'{bcolors.Yellow}{bcolors.BOLD}'
+                      f'Already in the posts list AKA post_index = {post_index}'
+                      f'{bcolors.Normal}')
 
             # 2 looking for new posts & Download when found.
             _finalUserName = actual_downloader(profiles2check=_profile_user_list,
                                                postPicker=_postPicker,  # refer to lasted post (the 1st lasted might make more rights problems...)
-                                               slow_mode=False)          # Wait 5 minutes between loops
+                                               slow_mode=True)          # Wait 5 minutes between loops
 
             # 3 Get name of ThePost files
             _files_name = name_finder() #AKA "2021-01-29_10-15-52_UTC"
