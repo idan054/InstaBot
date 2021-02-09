@@ -23,27 +23,30 @@ print(day)
     # if day.strftime("%H") == "13":
     #     print(day.strftime("%d/%m/%Y %H:%M:%S"))
     # whileIndex +=1
-
-post_schedule_counter = 0
-hours_to_upload = cycle([13,16,19])
-# hours_to_upload = [13,16,19]
+hours_string = input("Insert hours to upload posts on Upload Day. \nSo 14 = 14:00"
+                     "\nseparate with comma only (,)") or "13, 16, 19"
+hours_string = hours_string.replace(" ", "")  # Delete space
+hours_list = hours_string.split(",")
+hours_list = list(map(int, hours_list)) # ['1','2','3'] → [1,2,3]
+hours_cycle = cycle(hours_list)
+scheduled_posts_counter = 0
 def post_schedule():
-    global post_schedule_counter
-    print(f"defIndex = {post_schedule_counter}")
-    myDay = datetime.datetime.now() + datetime.timedelta(days=int(post_schedule_counter/3))
+    global scheduled_posts_counter
+    print(f"defIndex = {scheduled_posts_counter}")             # Current post / post per day
+    myDay = datetime.datetime.now() + datetime.timedelta(days=int(scheduled_posts_counter / len(hours_list)))
     myDay = int(myDay.strftime("%d"))
-    month = datetime.datetime.now() + datetime.timedelta(days=int(post_schedule_counter/3))
+    month = datetime.datetime.now() + datetime.timedelta(days=int(scheduled_posts_counter / len(hours_list)))
     month = int(month.strftime("%m"))
-    year = datetime.datetime.now() + datetime.timedelta(days=int(post_schedule_counter/3))
+    year = datetime.datetime.now() + datetime.timedelta(days=int(scheduled_posts_counter / len(hours_list)))
     year = int(year.strftime("%Y"))
 
-    hour = next(hours_to_upload)
+    hour = next(hours_cycle)
     # print(f"hour = {hour}")
     # for hour in hours_to_upload:
     custom_date_time = datetime.datetime(year=year, month=month, day=myDay, hour=hour,
                                          minute=00, second=00, microsecond=000000)
     print(custom_date_time)
-    post_schedule_counter += 1
+    scheduled_posts_counter += 1
     return custom_date_time
 
 time_to_post = post_schedule()
