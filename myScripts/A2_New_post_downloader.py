@@ -14,6 +14,7 @@ L = instaloader.Instaloader()
 # Login or load session
 try: L.load_session_from_file("spider_modelsx")
 except: L.login("spider_modelsx", "Idan05423")        # (login)
+# L.login("spider_modelsx", "Idan05423")        # (login)
 
 def actual_downloader(profiles2check, postPicker, slow_mode):
     """"Looking for new post on Instagram pages based username_maker() pre set"""
