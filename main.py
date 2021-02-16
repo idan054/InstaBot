@@ -7,9 +7,8 @@ import os
 import shutil
 
 from Gadgets.console_design import bcolors
-from myScripts.A2_New_post_downloader import actual_downloader
 from myScripts.A1_Setup_usernames import setup_usernames
-# Part A - Setup, Searching, Download
+from myScripts.A2_New_post_downloader import actual_downloader
 from myScripts.A3_Files_name_finder import name_finder
 from myScripts.A5_Setup_post_details import setup_post
 from myScripts.B1_Post_Uploader import actual_upload
@@ -22,6 +21,9 @@ if __name__ == '__main__':
 
     # 1 User Input usernames of Instagram Pages
     _profile_user_list = setup_usernames()
+
+    from myScripts.A4_Post_Shedule import setup_hours2post, next_custom_date_time #, setup_days2post
+    hours_list_global, hours_cycle_global = setup_hours2post()
 
     _postPicker = input("Which post (relate to lasted) will be downloaded?\nDefault is 3rd. ") or 3
     _postPicker = int(_postPicker)
@@ -47,9 +49,14 @@ if __name__ == '__main__':
             # 3 Get name of ThePost files
             _files_name = name_finder() #AKA "2021-01-29_10-15-52_UTC"
 
+            # 4 Make a datetime to post
+            _time_to_post = next_custom_date_time(hours_list_global, hours_cycle_global, post_index)
+            print(_time_to_post)
+
             # 4 fetch files to dict (dictionary list) and delete ThePost folder
             setup_post(page_profile=_finalUserName,
                        files_name=_files_name,
+                       time_to_post=_time_to_post,
                        post_counter=post_index+1)  ## Start from 1
             post_index += 1 ## Start from 0
     post_downloader()

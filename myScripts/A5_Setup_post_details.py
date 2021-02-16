@@ -8,7 +8,7 @@ import os
 from Gadgets.console_design import bcolors
 
 readyPost_dict = {}
-def setup_post(page_profile, files_name, post_counter):
+def setup_post(page_profile, files_name, post_counter, time_to_post):
     global readyPost_dict
     # try: os.mkdir('ReadyPosts')
     # except: print("Directory already exist")
@@ -55,7 +55,8 @@ def setup_post(page_profile, files_name, post_counter):
             post_counter: {
                 "page_profile": page_profile,
                 "post_desc": post_desc,
-                "pic_link": pic_link
+                "pic_link": pic_link,
+                "time_to_post": time_to_post
             }
           }
         )
