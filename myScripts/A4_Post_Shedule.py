@@ -38,8 +38,7 @@ def setup_hours2post():
 # posts_counter = 0
 # offset_days = 0
 def next_custom_date_time(hours_list, hours_cycle, offset_days):
-    # global offset_days
-    print(f"offset_days = {offset_days}")
+    # print(f"offset_days = {offset_days}")
     # print(f"posts_counter = {posts_counter}")             # Current post / post per day
     _day_datetime = datetime.datetime.now() + datetime.timedelta(
         days=int(offset_days / len(hours_list)))

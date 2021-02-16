@@ -24,14 +24,14 @@ L = instaloader.Instaloader()
 # L.login("spider_modelsx", "Idan05423")        # (login)
 L.load_session_from_file("spider_modelsx")
 
-global profile_user_list
+global usernames_list
 global post_counter
 global profile_page
 global start_download
 
 def username_maker():
     """"Setup the Instagram pages based user Input"""
-    global profile_user_list
+    global usernames_list
 
     # region Static Template
 
@@ -84,7 +84,7 @@ username_maker()
 def auto_new_post_downloader():
     """"Looking for new post on Instagram pages based username_maker() pre set"""
 
-    global profile_user_list
+    global usernames_list
     global post_counter
     global profile_page
     global start_download
