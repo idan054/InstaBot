@@ -1,0 +1,9 @@
+telegram~=0.0.1
+asyncio~=3.4.3
+instabot~=0.117.0
+InstagramAPI~=1.0.2
+instaloader~=4.6.1
+monkeylearn~=3.5.2
+Pillow~=8.1.0
+xopen~=1.1.0
+schedule~=0.6.0
