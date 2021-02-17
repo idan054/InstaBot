@@ -7,7 +7,7 @@ from Gadgets.console_design import bcolors
 
 myTime = datetime.datetime.now()
 # print ("Current date and time : ")
-# print (myTime.strftime("%d/%m/%Y %H:%M:%S"))
+print (myTime.strftime("%d/%m/%Y %H:%M:%S"))
 # print (myTime.strftime("%A"))
 day = datetime.date.today() + datetime.timedelta(days=1)
 print(day)

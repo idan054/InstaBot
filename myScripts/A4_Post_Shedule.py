@@ -1,9 +1,11 @@
-from datetime import datetime
 import datetime
+
 from itertools import cycle
 
 #Todo PART 1 - Coming soon...
 # Make a list of days to post
+
+
 def setup_days2post():
     days2Post = input("Insert days to upload posts (by Order). \nSo 1 = Sunday"
                       "\nseparate with comma only (,)") or "1, 3, 4"
@@ -66,6 +68,26 @@ def next_custom_date_time(hours_list, hours_cycle, offset_days):
     return custom_date_time
 # time_to_post = next_custom_date_time(hours_list_g, hours_cycle_g)
 # print(time_to_post)
+
+# region Usage example
+
+# l_hours_list, l_hours_cycle = setup_hours2post()
+# l_custom_date_time = next_custom_date_time(hours_list=l_hours_list, hours_cycle=l_hours_cycle, offset_days=0)
+# print(type(l_custom_date_time))
+# print(l_custom_date_time)
+#
+# # from datetime to timestamp float
+# from datetime import datetime
+# myTimestamp = datetime.timestamp(l_custom_date_time)
+# print(type(myTimestamp))
+# print(myTimestamp)
+#
+# # from timestamp float to datetime
+# myDatetime = datetime.fromtimestamp(myTimestamp)
+# print(type(myDatetime))
+# print(myDatetime)
+
+# endregion Usage example
 
 #Todo PART 3 - Coming soon...
 # Should return class<datetime> filtered by selected date

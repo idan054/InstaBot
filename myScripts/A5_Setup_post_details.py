@@ -18,21 +18,22 @@ def setup_post(page_profile, files_name, post_counter, time_to_post):
     json_xz_file = xopen(f'ThePost/{files_name}.json.xz').read()
     json_xz_file = json.loads(json_xz_file)
     pic_link = json_xz_file["node"]["display_url"] # String
-
+    time_to_post_float = datetime.timestamp(time_to_post)
+    time_to_post_string = time_to_post.strftime("%d/%m/%Y %H:%M:%S")
     try:
-        txt_file = open(f'ThePost/{files_name}.txt').read()
-        post_desc = f"{txt_file} \nToday's post credit: @{page_profile} \n+ caption_for_photo"
+        original_post_desc = open(f'ThePost/{files_name}.txt').read()
     except:
-        post_desc = f"Desc not found... \nToday's post credit: @{page_profile}"
+        original_post_desc = "" # When desc unavailable
 
     def dict_editor():
         global readyPost_dict
         readyPost_dict.update({
             post_counter: {
                 "page_profile": page_profile,
-                "post_desc": post_desc,
+                "original_post_desc": original_post_desc,
                 "pic_link": pic_link,
-                "time_to_post": time_to_post
+                "time_to_post_string": time_to_post_string,
+                "time_to_post_float": time_to_post_float
             }
           }
         )
