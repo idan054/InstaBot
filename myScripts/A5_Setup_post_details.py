@@ -11,7 +11,7 @@ readyPost_dict = {}
 def setup_post(page_profile, files_name, post_counter, time_to_post):
     global readyPost_dict
     # try: os.mkdir('ReadyPosts')
-    # except: print("Directory already exist")
+    # except (ValueError, Exception): print("Directory already exist")
 
     # txt_file = open(f'ThePost/{files_name}.txt').read()
 
@@ -22,7 +22,7 @@ def setup_post(page_profile, files_name, post_counter, time_to_post):
     time_to_post_string = time_to_post.strftime("%d/%m/%Y %H:%M:%S")
     try:
         original_post_desc = open(f'ThePost/{files_name}.txt').read()
-    except:
+    except (ValueError, Exception):
         original_post_desc = "" # When desc unavailable
 
     def dict_editor():

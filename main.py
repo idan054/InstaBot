@@ -20,7 +20,7 @@ if __name__ == '__main__':
     global usernames_list, hours2post_list, \
         hours2post_cycle, slow_mode, postPicker
 
-    ## Get dynamic data from user
+    ## 1 Get dynamic data from user
     # usernames, time to upload, slow mode and which post to upload
     def get_details():
         global usernames_list, hours2post_list, \
@@ -52,19 +52,19 @@ if __name__ == '__main__':
                   f'posts in the list = {post_index} (AKA post_index)'
                   f'{bcolors.Normal}')
 
-            # 2 looking for new posts & Download when found.
+            ## 2 looking for new posts & Download when found.
             _finalUserName = actual_downloader(profiles2check=usernames_list,
                                                postPicker=postPicker,        # refer to lasted post (the 1st lasted might make more rights problems...)
                                                slow_mode=slow_mode)          # Wait 5 minutes between loops
 
-            # 3 Get name of ThePost files
-            _files_name = name_finder() #AKA "2021-01-29_10-15-52_UTC"
+            ## 3 Get name of ThePost files
+            _files_name = name_finder() # AKA "2021-01-29_10-15-52_UTC"
 
-            # 4 Make a datetime to post
+            ## 4 Make a datetime to post
             _time_to_post = next_custom_date_time(hours2post_list, hours2post_cycle, post_index)
             print(_time_to_post)
 
-            # 4 fetch files to dict (dictionary list) and delete ThePost folder
+            ## 4 fetch files to dict (dictionary list) and delete ThePost folder
             setup_post(page_profile=_finalUserName,
                        files_name=_files_name,
                        post_counter=post_index+1, # Start from 1
