@@ -7,9 +7,10 @@ import os
 
 from Gadgets.console_design import bcolors
 
-readyPost_dict = {}
+ready2Post_dict = {}
+## include export to json, time_to_post_string & time_to_post_float
 def setup_post(page_profile, files_name, post_counter, time_to_post):
-    global readyPost_dict
+    global ready2Post_dict
     # try: os.mkdir('ReadyPosts')
     # except (ValueError, Exception): print("Directory already exist")
 
@@ -26,7 +27,7 @@ def setup_post(page_profile, files_name, post_counter, time_to_post):
         original_post_desc = "" # When desc unavailable
 
     def dict_editor():
-        global readyPost_dict
+        global ready2Post_dict
         readyPost_dict.update({
             post_counter: {
                 "page_profile": page_profile,

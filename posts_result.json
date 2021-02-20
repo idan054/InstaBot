@@ -1,23 +1,17 @@
 {
-  "1": {
-    "page_profile": "spider_modelsx",
-    "original_post_desc": "Desc not found... \nToday's post credit: @spider_modelsx",
-    "pic_link": "https://instagram.fhfa1-1.fna.fbcdn.net/v/t51.2885-15/e35/147011547_1060753541059342_725676426597163405_n.jpg?_nc_ht=instagram.fhfa1-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=rZQiYJOehZEAX97chvN&tp=1&oh=40b6dcca8f56ba694666d69f62ca800f&oe=60570376",
-    "time_to_post_string": "17/02/2021 11:00:00",
-    "time_to_post_float": 1613552400.0
+  "Sunday": {
+    "post_1": "13-00",
+    "post_2": "16-00",
+    "post_3": "19-00"
   },
-  "2": {
-    "page_profile": "spider_modelsx",
-    "original_post_desc": "Desc not found... \nToday's post credit: @spider_modelsx",
-    "pic_link": "https://instagram.fhfa1-1.fna.fbcdn.net/v/t51.2885-15/e35/144500141_156835686242663_4678927599306287928_n.jpg?_nc_ht=instagram.fhfa1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=2aScVLiiCacAX_eQpfK&tp=1&oh=6c7404bbd96c484931bc200633aa18b7&oe=60567E9E",
-    "time_to_post_string": "17/02/2021 12:00:00",
-    "time_to_post_float": 1613556000.0
+  "Tuesday": {
+    "post_1": "13-00",
+    "post_2": "16-00",
+    "post_3": "19-00"
   },
-  "3": {
-    "page_profile": "spider_modelsx",
-    "original_post_desc": "caption_for_photo\n \nToday's post credit: @spider_modelsx \n+ caption_for_photo",
-    "pic_link": "https://instagram.fhfa1-1.fna.fbcdn.net/v/t51.2885-15/e35/143860877_325508472132218_4317617745678578269_n.jpg?_nc_ht=instagram.fhfa1-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=rAIpD6XuBawAX_uq7Mr&tp=1&oh=35a1a0da40a97de7c94322e51e8ef5e2&oe=60552541",
-    "time_to_post_string": "17/02/2021 13:00:00",
-    "time_to_post_float": 1613559600.0
+  "Wednesday": {
+    "post_1": "13-00",
+    "post_2": "16-00",
+    "post_3": "19-00"
   }
 }

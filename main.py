@@ -11,8 +11,7 @@ from myScripts.A1_Setup_usernames import setup_usernames
 from myScripts.A2_New_post_downloader import actual_downloader
 from myScripts.A3_Files_name_finder import name_finder
 from myScripts.A4_Post_Shedule import setup_hours2post, next_custom_date_time  # , setup_days2post
-from myScripts.A5_Setup_post_details import setup_post
-from myScripts.B1_Post_Uploader import actual_upload
+from myScripts.A5_setup_post_details2 import setup_post
 
 if __name__ == '__main__':
     print(f"{bcolors.Yellow}Start{bcolors.Normal}")
@@ -58,17 +57,16 @@ if __name__ == '__main__':
                                                slow_mode=slow_mode)          # Wait 5 minutes between loops
 
             ## 3 Get name of ThePost files
-            _files_name = name_finder() # AKA "2021-01-29_10-15-52_UTC"
+            _thePost_files_name = name_finder() # AKA "2021-01-29_10-15-52_UTC"
 
             ## 4 Make a datetime to post
             _time_to_post = next_custom_date_time(hours2post_list, hours2post_cycle, post_index)
             print(_time_to_post)
 
-            ## 4 fetch files to dict (dictionary list) and delete ThePost folder
+            ## 5 fetch files to dict (dictionary list) and delete ThePost folder
             setup_post(page_profile=_finalUserName,
-                       files_name=_files_name,
-                       post_counter=post_index+1, # Start from 1
-                       time_to_post=_time_to_post)
+                       thePost_files_name=_thePost_files_name,
+                       post_counter=post_index+1) # Start from 1
             post_index += 1 # Start from 0
     pages_tracker()
 

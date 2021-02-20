@@ -6,13 +6,6 @@ from instabot import Bot
 from Gadgets.console_design import bcolors
 
 
-username_and_pass = input("Insert username & pass to upload separate with comma (,)") or "spider_modelsx, Idan05423"
-username_and_pass = username_and_pass.replace(" ", "")  # Delete space
-username_and_pass_list = username_and_pass.split(",")
-_insta_user = username_and_pass_list[0]
-_insta_pass = username_and_pass_list[1]
-print(_insta_pass, "\n", _insta_user)
-
 global bot
 def upload_post(insta_user, insta_pass,
                 pic_link, original_post_desc,
@@ -77,9 +70,15 @@ def upload_post(insta_user, insta_pass,
             print(f"{bcolors.Normal}")
     actual_upload()
 
+# Example to upload
+# username_and_pass = input("Insert username & pass to upload separate with comma (,)") or "spider_modelsx, Idan05423"
+# username_and_pass = username_and_pass.replace(" ", "")  # Delete space
+# username_and_pass_list = username_and_pass.split(",")
+# _insta_user = username_and_pass_list[0]
+# _insta_pass = username_and_pass_list[1]
+# print(_insta_pass, "\n", _insta_user)
 
-upload_post(insta_user=_insta_user, insta_pass=_insta_pass,
-            pic_link="https://instagram.fhfa1-1.fna.fbcdn.net/v/t51.2885-15/e35/144500141_156835686242663_4678927599306287928_n.jpg?_nc_ht=instagram.fhfa1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=2aScVLiiCacAX_eQpfK&tp=1&oh=6c7404bbd96c484931bc200633aa18b7&oe=60567E9E",
-            original_post_desc="caption_for_photo",
-            page_profile="spider_modelsx")
-#
+# upload_post(insta_user=_insta_user, insta_pass=_insta_pass,
+#             pic_link="https://instagram.fhfa1-1.fna.fbcdn.net/v/t51.2885-15/e35/144500141_156835686242663_4678927599306287928_n.jpg?_nc_ht=instagram.fhfa1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=2aScVLiiCacAX_eQpfK&tp=1&oh=6c7404bbd96c484931bc200633aa18b7&oe=60567E9E",
+#             original_post_desc="caption_for_photo",
+#             page_profile="spider_modelsx")
