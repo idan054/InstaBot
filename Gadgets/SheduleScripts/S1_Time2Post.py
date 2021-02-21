@@ -1,4 +1,5 @@
 import datetime
+import json
 
 from itertools import cycle
 
@@ -15,9 +16,9 @@ def setup_days2post():
         day2Post = saturday + datetime.timedelta(days=_int)
         _days2Post_list.append(day2Post.strftime("%A"))
     return _days2Post_list
-# days2Post_list = setup_days2post()
-# print("days2Post_list:")
-# print(*days2Post_list, sep=" | ")
+days2Post_list = setup_days2post()
+print("days2Post_list:")
+print(*days2Post_list, sep=" | ")
 
 # Create options of time_to_post based on selected hours ↓
 def setup_hours2post():
@@ -29,11 +30,12 @@ def setup_hours2post():
     _hours2Post_list = hours_string.split(",")
     # _hours2Post_list = list(map(int, _hours2Post_list))  # ['1','2','3'] → [1,2,3]
     return _hours2Post_list
-# hours2Post_list =  setup_hours2post()
-# print("hours2Post_list:")
-# print(*hours2Post_list, sep=" | ")
+hours2Post_list =  setup_hours2post()
+print("hours2Post_list:")
+print(*hours2Post_list, sep=" | ")
 
-def setup_time2post(hours2Post_list, days2Post_list):
+# def setup_time2post(hours2Post_list, days2Post_list):
+def setup_time2post():
     hours2Post_dict = {}
     forIndex = 1
     for hour in hours2Post_list: # Until end of list...
@@ -56,7 +58,7 @@ def setup_time2post(hours2Post_list, days2Post_list):
 
     # time2post_dict = time2post_dict
 
-    # Replace ' to " for good Json file
-    # print(str(time2post_dict).replace("\'", "\""))
+    # JSON VIEW -  Replace (') to (") for good Json file
 
     return time2post_dict
+setup_time2post()

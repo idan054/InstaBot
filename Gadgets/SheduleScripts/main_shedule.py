@@ -4,19 +4,7 @@ from Gadgets.console_design import bcolors
 from Gadgets.SheduleScripts.S1_Time2Post import setup_time2post, setup_hours2post, setup_days2post
 from Gadgets.SheduleScripts.S2_JobsSchedule import schedule_job
 
-days2Post_list = setup_days2post()
-print("days2Post_list:")
-print(*days2Post_list, sep=" | ")
 
-hours2Post_list =  setup_hours2post()
-print("hours2Post_list:")
-print(*hours2Post_list, sep=" | ")
-
-time2post_dict = setup_time2post(days2Post_list=days2Post_list, hours2Post_list=hours2Post_list)
-
-# print(time2post_dict)
-# Replace (') to (") for good Json file
-# print(str(time2post_dict).replace("\'", "\""))
 
 # print(str(time2post_dict["Days"].keys()).lower())
 
@@ -36,8 +24,8 @@ def schedule_posts():
             schedule_job(someDay=current_day,
                          someTime=current_hour,
                          someDef=job)
-            print(f"Job scheduled for {bcolors.BOLD} {current_day}, {current_hour} {bcolors.Normal}")
-
+            print(f"post scheduled for every{bcolors.BOLD}{current_day}, {current_hour} {bcolors.Normal}")
+schedule_posts()
 
 while True:
     ## looking for pending

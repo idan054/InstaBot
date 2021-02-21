@@ -6,11 +6,18 @@ from instabot import Bot
 from Gadgets.console_design import bcolors
 
 
+# post_details = {'1': {'page_profile': 'spider_modelsx', 'original_post_desc': 'caption_for_photo\n  post credit: @spider_modelsx\n', 'pic_link': 'https://instagram.fhfa1-1.fna.fbcdn.net/v/t51.2885-15/e35/150869913_1104238106665113_7779651190563703574_n.jpg?_nc_ht=instagram.fhfa1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=M3mDKMVaRs4AX-He2tq&tp=1&oh=d3384e81734d3781f7efcb2b15c7e513&oe=605D198E'}}
+
 global bot
 def upload_post(insta_user, insta_pass,
-                pic_link, original_post_desc,
-                page_profile):
+                pic_link, original_post_desc, page_profile,
+                # post_details
+                ):
     global bot
+    # print("use value post_details instead pic_link, original_post_desc, page_profile,")
+    # pic_link = post_details["1"]["pic_link"],
+    # page_profile = post_details["1"]["page_profile"],
+    # original_post_desc = post_details["1"]["original_post_desc"],
 
     # 0. delete config folder to login & Transform pic_link to .jpg
     def clean_start():
@@ -20,6 +27,7 @@ def upload_post(insta_user, insta_pass,
         except:
             print(f"{bcolors.Yellow}{bcolors.BOLD}config folder not found...{bcolors.Normal}")
 
+        # Download to local from web
         urllib.request.urlretrieve(f"{pic_link}", "LastedPhoto.jpg")
     clean_start()
 
@@ -54,7 +62,7 @@ def upload_post(insta_user, insta_pass,
             try:
                 bot.upload_photo("LastedPhoto.jpg",
                                  caption=f"""{original_post_desc}
-                                 credit for today's post: @{page_profile}""")
+                                 post credit: @{page_profile}""")
 
                 print(f"{bcolors.Yellow}{bcolors.BOLD}Post Uploaded{bcolors.Normal}")
                 print('Delete "LastedPhoto.jpg.REMOVE_ME"')
